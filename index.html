@@ -2,22 +2,18 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#0b1220"><meta name="apple-mobile-web-app-capable" content="yes">
-<title>Money — إدارة مصروفي</title>
-<link rel="stylesheet" href="style.css">
+<meta name="theme-color" content="#080c14"><meta name="apple-mobile-web-app-capable" content="yes">
+<title>Money — إدارة مصروفي</title><link rel="stylesheet" href="style.css?v=2">
 </head>
-<body>
-<div class="app">
-<header class="topbar"><div><div class="eyebrow">إدارة أموالك</div><h1>Money <span>💰</span></h1></div><button class="icon-btn" id="settingsBtn" aria-label="الإعدادات">⚙️</button></header>
+<body><div class="app">
+<header class="topbar"><div><div class="eyebrow">لوحة أموالك</div><h1>Money <span>💰</span></h1></div><button class="icon-btn" id="settingsBtn">⚙️</button></header>
 <main>
-<section class="hero"><div class="hero-top"><div><p class="muted">المتاح هذا الشهر</p><div class="balance" id="available">0.00</div><span class="currency" id="currencyLabel">JOD</span></div><div class="month" id="monthLabel"></div></div><div class="progress"><div id="budgetProgress"></div></div><div class="hero-foot"><span>مصروف <b id="spentHero">0</b></span><span>دخلك <b id="incomeHero">0</b></span></div></section>
-<section class="quick-grid"><button data-action="expense" class="quick expense"><span>−</span><b>أضف مصروف</b><small>سجّل أي دفعة بسرعة</small></button><button data-action="income" class="quick income"><span>＋</span><b>أضف دخل</b><small>راتب أو دخل إضافي</small></button><button data-action="home" class="quick home"><span>🏠</span><b>مصاريف البيت</b><small>تتبع البيت لحاله</small></button><button data-action="group" class="quick group"><span>👥</span><b>الجمعية</b><small>دفعاتك واستحقاقك</small></button></section>
-<section class="section"><div class="section-head"><h2>نظرة سريعة</h2><button id="monthReset">هذا الشهر</button></div><div class="stats"><div class="stat"><span>💵 الدخل</span><strong id="incomeStat">0</strong></div><div class="stat"><span>🧾 المصاريف</span><strong id="expenseStat">0</strong></div><div class="stat"><span>🏦 الادخار</span><strong id="savingStat">0</strong></div></div></section>
+<section class="hero"><div class="hero-top"><div><p class="muted">المتبقي هذا الشهر</p><div class="balance" id="available">0.00</div><span class="currency" id="currencyLabel">JOD</span></div><div class="month" id="monthLabel"></div></div><div class="progress"><div id="budgetProgress"></div></div><div class="hero-foot"><span>مصروف <b id="spentHero">0</b></span><span>دخل <b id="incomeHero">0</b></span><span>ادخار <b id="savingHero">0</b></span></div></section>
+<section class="quick-grid"><button class="quick expense" data-action="expense"><span>−</span><b>مصروف جديد</b><small>أي دفعة أو شراء</small></button><button class="quick income" data-action="salary"><span>💵</span><b>راتب هذا الشهر</b><small>أدخل المبلغ الفعلي</small></button><button class="quick extra" data-action="external"><span>＋</span><b>دخل خارجي</b><small>أي دخل إضافي</small></button><button class="quick fixed" data-action="fixed"><span>🔁</span><b>المصاريف الثابتة</b><small>الجمعية والفواتير الشهرية</small></button></section>
+<section class="section"><div class="section-head"><h2>نظرة هذا الشهر</h2><button id="monthReset">تحديث</button></div><div class="stats"><div class="stat"><span>💵 إجمالي الدخل</span><strong id="incomeStat">0</strong></div><div class="stat"><span>🧾 إجمالي المصروف</span><strong id="expenseStat">0</strong></div><div class="stat"><span>🏦 المتبقي</span><strong id="savingStat">0</strong></div><div class="stat"><span>🔁 ثابت</span><strong id="fixedStat">0</strong></div></div></section>
+<section class="section"><div class="section-head"><h2>📊 تقرير المصاري</h2><button data-action="reports">تفاصيل</button></div><div class="report-card"><div class="donut" id="donut"><div><b id="donutPct">0%</b><small>مصروف من الدخل</small></div></div><div class="report-side"><div><span>الدخل</span><b id="reportIncome">0</b></div><div><span>المصروف</span><b id="reportExpense">0</b></div><div><span>المتبقي</span><b id="reportBalance">0</b></div></div></div><div class="bars" id="categoryBars"></div></section>
 <section class="section"><div class="section-head"><h2>آخر الحركات</h2><button id="allTransactions">عرض الكل</button></div><div id="recentList" class="transactions"></div></section>
-<section class="section"><div class="section-head"><h2>أهدافي والتزاماتي</h2></div><div class="cards-row"><button class="mini-card" data-action="saving"><span>🎯</span><b>هدف الادخار</b><small id="savingGoalText">حدد هدفك</small></button><button class="mini-card" data-action="group"><span>👥</span><b>الجمعية</b><small id="groupMini">لم تُضبط بعد</small></button></div></section>
-</main>
-<nav class="bottom-nav"><button class="active" data-tab="homeTab">⌂<span>الرئيسية</span></button><button data-tab="transactionsTab">▣<span>الحركات</span></button><button data-tab="budgetTab">◔<span>الميزانية</span></button><button data-tab="moreTab">•••<span>المزيد</span></button></nav>
-</div>
+<section class="section"><div class="section-head"><h2>⚡ اختصارات</h2></div><div class="cards-row"><button class="mini-card" data-action="salarySetup"><span>💰</span><b>الراتب الشهري</b><small id="salaryMini">لم يُضبط</small></button><button class="mini-card" data-action="home"><span>🏠</span><b>مصاريف البيت</b><small id="homeMini">0 هذا الشهر</small></button><button class="mini-card" data-action="group"><span>👥</span><b>الجمعية</b><small id="groupMini">لم تُضبط</small></button><button class="mini-card" data-action="saving"><span>🎯</span><b>هدف الادخار</b><small id="savingGoalText">حدد هدفك</small></button></div></section>
+</main><nav class="bottom-nav"><button class="active" data-tab="homeTab">⌂<span>الرئيسية</span></button><button data-tab="transactionsTab">▣<span>الحركات</span></button><button data-tab="reportsTab">◔<span>التقارير</span></button><button data-tab="moreTab">•••<span>المزيد</span></button></nav></div>
 <div class="modal" id="modal"><div class="sheet"><button class="close" id="closeModal">×</button><div id="modalContent"></div></div></div>
-<script src="app.js"></script>
-</body></html>
+<script src="app.js?v=2"></script></body></html>
