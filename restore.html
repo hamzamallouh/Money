@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>استرجاع بيانات Money</title></head>
+<body style="font-family:Arial,sans-serif;text-align:center;padding:40px;background:#070b13;color:white">
+<h2>جاري استرجاع الحركات…</h2><p id="status">لحظة واحدة</p>
+<script>
+(function(){
+  const KEY='money_v3';
+  let db;
+  try{db=JSON.parse(localStorage.getItem(KEY)||'null')}catch(e){db=null}
+  db=db&&typeof db==='object'?db:{};
+  db.currency=db.currency||'JOD';
+  db.salary=db.salary||{base:0,actual:{}};
+  db.salary.actual=db.salary.actual||{};
+  db.fixed=Array.isArray(db.fixed)?db.fixed:[];
+  db.transactions=Array.isArray(db.transactions)?db.transactions:[];
+  db.debts=Array.isArray(db.debts)?db.debts:[];
+
+  db.salary.base=850;
+  db.salary.actual['2026-09']=940;
+
+  const fixedId='screenshot-fixed-group-2026-09';
+  if(!db.fixed.some(f=>String(f.id)===fixedId)) db.fixed.push({id:fixedId,name:'الجمعية',amount:600,category:'الجمعية'});
+
+  const tx=[
+    ['screenshot-salary-2026-09','income',940,'راتب الشهر','راتب','2026-09-01T09:00:00+03:00','💵'],
+    ['screenshot-income-27-2026-09-07','income',27,'سابق','دخل خارجي','2026-09-07T09:00:00+03:00','💰'],
+    ['screenshot-income-90-2026-09-07','income',90,'Overtime','دخل خارجي','2026-09-07T10:00:00+03:00','💰'],
+    ['screenshot-income-150-2026-09-07','income',150,'فريلانس','دخل خارجي','2026-09-07T11:00:00+03:00','💰'],
+    ['screenshot-expense-173-2026-09-07','expense',173,'دين مهند فيزا','فواتير','2026-09-07T12:00:00+03:00','🧾'],
+    ['screenshot-expense-2-2026-09-07','expense',2,'كريج','أكل','2026-09-07T13:00:00+03:00','🧾'],
+    ['screenshot-debt-250-2026-09-07','debtPayment',250,'سداد مطبخ','سداد ديون','2026-09-07T14:00:00+03:00','💳'],
+    ['screenshot-expense-50-2026-09-07','expense',50,'مصروف بيان','البيت','2026-09-07T15:00:00+03:00','🧾'],
+    ['screenshot-expense-3-2026-09-06','expense',3,'مي و قهوة مع بيان','أكل','2026-09-06T12:00:00+03:00','🧾'],
+    ['screenshot-expense-11-2026-09-06','expense',11,'شاورما بيان','أكل','2026-09-06T13:00:00+03:00','🧾'],
+    ['screenshot-expense-8-2026-09-06','expense',8,'ورد بيان','البيت','2026-09-06T14:00:00+03:00','🧾'],
+    ['screenshot-expense-20-2026-09-06','expense',20,'نقوط عدوي','شخصي','2026-09-06T15:00:00+03:00','🧾'],
+    ['screenshot-fixed-group-2026-09','expense',600,'جمعية','الجمعية','2026-09-07T16:00:00+03:00','👥']
+  ];
+
+  const ids=new Set(db.transactions.map(t=>String(t.id)));
+  const sameDay=(a,b)=>String(a||'').slice(0,10)===String(b||'').slice(0,10);
+  let added=0;
+  tx.forEach(x=>{
+    const [id,type,amount,name,category,date,icon]=x;
+    const exists=ids.has(id)||db.transactions.some(t=>String(t.type)===type&&Number(t.amount)===amount&&String(t.name||'').trim()===name&&sameDay(t.date,date));
+    if(exists)return;
+    const t={id,type,amount,name,category,date,icon};
+    if(id==='screenshot-salary-2026-09'){t.auto='salary';t.month='2026-09'}
+    if(id==='screenshot-fixed-group-2026-09'){t.auto='fixed-'+fixedId;t.month='2026-09'}
+    db.transactions.push(t);ids.add(id);added++;
+  });
+
+  localStorage.setItem(KEY,JSON.stringify(db));
+  const saved=JSON.parse(localStorage.getItem(KEY)||'null');
+  const count=saved&&Array.isArray(saved.transactions)?saved.transactions.length:0;
+  document.getElementById('status').innerHTML='تم الاسترجاع بنجاح ✅<br>تمت إضافة '+added+' حركة، وأصبح إجمالي الحركات المحفوظة: '+count+'<br><br>سيتم فتح Money الآن…';
+  setTimeout(function(){location.href='index.html?v=restore-final-'+Date.now()},1200);
+})();
+</script>
+</body></html>
