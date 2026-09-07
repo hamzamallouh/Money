@@ -1,0 +1,23 @@
+{
+  "version": 1,
+  "savedAt": "2026-09-07",
+  "currency": "JOD",
+  "salary": {"base":850,"actual":{"2026-09":940}},
+  "fixed":[{"id":"screenshot-fixed-group-2026-09","name":"الجمعية","amount":600,"category":"الجمعية"}],
+  "transactions":[
+    {"id":"screenshot-salary-2026-09","type":"income","amount":940,"name":"راتب الشهر","category":"راتب","date":"2026-09-01T09:00:00+03:00","icon":"💵","auto":"salary","month":"2026-09"},
+    {"id":"screenshot-income-27-2026-09-07","type":"income","amount":27,"name":"سابق","category":"دخل خارجي","date":"2026-09-07T09:00:00+03:00","icon":"💰"},
+    {"id":"screenshot-income-90-2026-09-07","type":"income","amount":90,"name":"Overtime","category":"دخل خارجي","date":"2026-09-07T10:00:00+03:00","icon":"💰"},
+    {"id":"screenshot-income-150-2026-09-07","type":"income","amount":150,"name":"فريلانس","category":"دخل خارجي","date":"2026-09-07T11:00:00+03:00","icon":"💰"},
+    {"id":"screenshot-expense-173-2026-09-07","type":"expense","amount":173,"name":"دين مهند فيزا","category":"فواتير","date":"2026-09-07T12:00:00+03:00","icon":"🧾"},
+    {"id":"screenshot-expense-2-2026-09-07","type":"expense","amount":2,"name":"كريج","category":"أكل","date":"2026-09-07T13:00:00+03:00","icon":"🧾"},
+    {"id":"screenshot-debt-250-2026-09-07","type":"debtPayment","amount":250,"name":"سداد مطبخ","category":"سداد ديون","date":"2026-09-07T14:00:00+03:00","icon":"💳"},
+    {"id":"screenshot-expense-50-2026-09-07","type":"expense","amount":50,"name":"مصروف بيان","category":"البيت","date":"2026-09-07T15:00:00+03:00","icon":"🧾"},
+    {"id":"screenshot-expense-3-2026-09-06","type":"expense","amount":3,"name":"مي و قهوة مع بيان","category":"أكل","date":"2026-09-06T12:00:00+03:00","icon":"🧾"},
+    {"id":"screenshot-expense-11-2026-09-06","type":"expense","amount":11,"name":"شاورما بيان","category":"أكل","date":"2026-09-06T13:00:00+03:00","icon":"🧾"},
+    {"id":"screenshot-expense-8-2026-09-06","type":"expense","amount":8,"name":"ورد بيان","category":"البيت","date":"2026-09-06T14:00:00+03:00","icon":"🧾"},
+    {"id":"screenshot-expense-20-2026-09-06","type":"expense","amount":20,"name":"نقوط عدوي","category":"شخصي","date":"2026-09-06T15:00:00+03:00","icon":"🧾"},
+    {"id":"screenshot-fixed-group-2026-09","type":"expense","amount":600,"name":"جمعية","category":"الجمعية","date":"2026-09-07T16:00:00+03:00","icon":"👥","auto":"fixed-screenshot-fixed-group-2026-09","month":"2026-09"}
+  ],
+  "debts":[]
+}
