@@ -42,8 +42,13 @@
   ];
 
   const ids=new Set(db.transactions.map(t=>String(t.id)));
+  const sameDay=(a,b)=>String(a||'').slice(0,10)===String(b||'').slice(0,10);
+  const equivalent=t=>db.transactions.some(x=>String(x.type)===String(t.type)&&Number(x.amount)===Number(t.amount)&&String(x.name).trim()===String(t.name).trim()&&sameDay(x.date,t.date));
   let added=0;
-  tx.forEach(t=>{if(!ids.has(t.id)){db.transactions.push(t);ids.add(t.id);added++}});
+  tx.forEach(t=>{
+    if(ids.has(t.id)||equivalent(t)) return;
+    db.transactions.push(t);ids.add(t.id);added++;
+  });
 
   localStorage.setItem(KEY,JSON.stringify(db));
   alert('تم إدخال كل البيانات الظاهرة بالصور ✅\n\nتمت إضافة '+added+' حركة، مع الراتب الأساسي 850 والفعلي 940 والجمعية 600 شهريًا.\n\nلم يتم حذف أو تعديل أي حركة موجودة.');
